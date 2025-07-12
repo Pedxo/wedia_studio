@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { BsMoon, BsSun } from "react-icons/bs";
 import { FiMenu, FiX } from "react-icons/fi";
-import {RiMenu5Line} from "react-icons/ri"
+import { RiMenu5Line } from "react-icons/ri"
+import { Link } from "react-router-dom";
 import Logo from "../assets/wedia.svg";
 import { useTheme } from "../themeContext/ThemeContext"
 
@@ -18,22 +19,26 @@ const Navbar = () => {
             ? "bg-[#d9d9d9]/[0.03] text-white"
             : "bg-[#d9d9d9]/[0.4] text-black"}`}
       >
-        <img src={Logo} alt="Logo" className="h-10" />
+        <Link to="/">
+          <img src={Logo} alt="Logo" className="h-10" />
+        </Link>
 
         {/*Navigation items */}
         <ul className="hidden md:flex items-center gap-10 text-sm">
-          <li><a href="#" className="hover:text-pink-500">Home</a></li>
+          <li><a href="/" className="hover:text-pink-500">Home</a></li>
           <li><a href="#" className="hover:text-pink-500">How It Works</a></li>
           <li><a href="#" className="hover:text-pink-500">Why Wedia</a></li>
         </ul>
         <div className="flex items-center gap-6">
           {/*Request button*/}
-          <button
-            className={`hidden md:block px-4 py-3 rounded-lg  text-sm cursor-pointer font-semibold hover:bg-pink-700 transition
+          <Link to="/request-form">
+            <button
+              className={`hidden md:block px-4 py-3 rounded-lg  text-sm cursor-pointer font-semibold hover:bg-pink-700 transition
             ${isDark ? "bg-[#ff3ea5] text-black" : "bg-[#ff3ea5] text-white"}`}
-          >
-            Request A Project
-          </button>
+            >
+              Request A Project
+            </button>
+          </Link>
           {/*Hamburgar and close button*/}
           <div className="flex items-center gap-4 md:hidden">
             <button onClick={() => setMenuOpen(!menuOpen)}>
@@ -63,12 +68,14 @@ const Navbar = () => {
               <li><a href="#" className="hover:text-pink-500">Why Wedia</a></li>
             </ul>
             {/*Request button*/}
-            <button
-              className={`px-4 py-2 text-[12px] rounded-lg  cursor-pointer font-semibold hover:bg-pink-700 transition
+            <Link to="/request-form">
+              <button
+                className={`px-4 py-2 text-[12px] rounded-lg  cursor-pointer font-semibold hover:bg-pink-700 transition
             ${isDark ? "bg-[#ff3ea5] text-black" : "bg-[#ff3ea5] text-white"}`}
-            >
-              Request A Project
-            </button>
+              >
+                Request A Project
+              </button>
+            </Link>
           </div>
         </div>
       )}
