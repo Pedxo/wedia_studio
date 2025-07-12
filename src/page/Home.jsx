@@ -1,7 +1,7 @@
 import React from 'react'
 import CallToActionCard from '../components/CallToActionCard'
 import Features from '../components/Features'
-import HeroSection from '../components/heroSection'
+import HeroSection from '../components/HeroSection'
 import HowItWorks from '../components/HowItWorks'
 import Testimonials from '../components/Testimonials'
 import WhoItsFor from '../components/WhoItsFor'
@@ -9,7 +9,7 @@ import WhyChooseWedia from '../components/WhyChooseWedia'
 
 const Home = () => {
   return (
-    <div className=''>
+    <div>
       <HeroSection />
       <Features />
       <HowItWorks />
