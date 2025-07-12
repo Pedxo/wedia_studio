@@ -76,7 +76,7 @@ const Testimonials = () => {
     <img
       src={Group45}
       alt="Floating Graphic"
-      className="absolute md:left-40 left-[-40px] top-[-30px] w-35 z-[30] animate-floating  pointer-events-none"
+      className="absolute md:left-40 left-[-40px] top-[-2%] w-35 z-[30] animate-floating  pointer-events-none"
     />
     {/* Absolute right-side image between testimonial and CTA */}
     <img
