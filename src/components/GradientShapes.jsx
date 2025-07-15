@@ -8,19 +8,24 @@ const GradientShapes = ({ position }) => {
     <>
       {/* Top Right Pink Glow Sphere */}
       {position === "top" && (
+        <>
         <div
-          className={`absolute top-[-200px] right-[-200px] w-[500px] h-[500px] rounded-full ${commonStyle} z-0`}
-        />
+          className={`absolute top-[-200px] right-[-200px] md:w-[400px] md:h-[400px] w-[100px] h-[100px] rounded-full ${commonStyle} z-0`}
+        />  
+        <div
+          className={`absolute top-[700px] right-[-200px] md:w-[400px] md:h-[400px] w-[100px] h-[100px] rounded-full ${commonStyle} z-0`}
+        />        
+        </>
       )}
 
       {/* HeroSection Lower Edge Spheres */}
       {position === "middle" && (
         <>
           <div
-            className={`absolute left-[-150px] top-[50%] w-[350px] h-[350px] rounded-full ${commonStyle} z-0`}
+            className={`absolute left-[-150px] top-[30%] md:w-[250px] md:h-[250px] w-[100px] h-[100px] rounded-full ${commonStyle} z-0`}
           />
           <div
-            className={`absolute right-[-150px] top-[70%] w-[350px] h-[350px] rounded-full ${commonStyle} z-0`}
+            className={`absolute right-[-150px] top-[45%] md:w-[250px] md:h-[250px] w-[100px] h-[100px] rounded-full ${commonStyle} z-0`}
           />
         </>
       )}
@@ -29,10 +34,10 @@ const GradientShapes = ({ position }) => {
       {position === "bottom" && (
         <>
           <div
-            className={`absolute left-[-150px] top-[80%] w-[350px] h-[350px] rounded-full ${commonStyle} z-0`}
+            className={`absolute left-[-150px] top-[57%] md:w-[300px] md:h-[300px] w-[100px] h-[100px] rounded-full ${commonStyle} z-0`}
           />
           <div
-            className={`absolute right-[-150px] top-[95%] w-[350px] h-[350px] rounded-full ${commonStyle} z-0`}
+            className={`absolute right-[-150px] top-[65%] md:w-[300px] md:h-[300px] w-[100px] h-[100px] rounded-full ${commonStyle} z-0`}
           />
         </>
       )}

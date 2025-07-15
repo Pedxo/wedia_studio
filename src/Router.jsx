@@ -1,8 +1,11 @@
 import {createBrowserRouter} from "react-router-dom";
 import AppLayout from "./layout/AppLayout";
 import RequestLayout from "./layout/RequestLayout";
+import ErrorPage from "./page/ErrorPage";
 import Home from "./page/Home";
 import RequestForm from "./page/RequestForm";
+import SuccessPage from "./page/SuccessPage";
+import WarningPage from "./page/WarningPage";
 
 
 const router = () =>
@@ -18,12 +21,24 @@ const router = () =>
       ],
     },
     {
-      path: "/request-form",
+      path: "/",
       element: <RequestLayout />,
       children: [
         {
-          index: true,
+          path: "request-form",
           element: <RequestForm />
+        },
+        {
+          path: "success-page",
+          element: <SuccessPage />
+        },
+        {
+          path: "error-page",
+          element: <ErrorPage />
+        },
+        {
+          path: "warning",
+          element: <WarningPage />
         }
       ]
     },

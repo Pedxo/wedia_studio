@@ -13,7 +13,7 @@ const AppWrapper = () => {
     <div
       className={`relative min-h-screen overflow-hidden transition-all duration-300
       ${isDark
-        ? "bg-gradient-to-r from-[#1A1E1C] via-[#1A1E1C] to-[#2a1b23] text-white"
+        ? "bg-[#0D0D0D] text-white"
         : "bg-gradient-to-r from-white via-[#ffeff6] to-[#ffe0eb] text-black"}`}
     >
       <GradientShapes position="top" />
