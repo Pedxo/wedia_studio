@@ -94,7 +94,7 @@ const RequestForm = () => {
           just high-impact support.
         </p>
       </div>
-      <div className='flex items-center justify-center py-6 px-4 w-full'>
+      <div className='flex items-center justify-center py-6 px-2 w-full'>
         <form className="w-full max-w-4xl" onSubmit={handleSubmit}>
 
           {/* Row 1 */}
@@ -175,7 +175,7 @@ const RequestForm = () => {
           {/* Volume of Data */}
           <div className="mb-10">
             <label className={`block text-xs sm:text-sm ${isDark ? "text-white" : "text-black"} mb-2`}>
-              Volume of Data <span className={`text-xs ${isDark ? "text-gray-600" : "text-gray-700"}`}>(Use categories: Positive, Negative, Neutral)</span>
+              Volume of Data <span className={`text-[9px] sm:text-xs ${isDark ? "text-gray-600" : "text-gray-700"}`}>(Use categories: Positive, Negative, Neutral)</span>
             </label>
             <textarea
               name="volume"
