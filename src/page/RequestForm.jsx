@@ -182,8 +182,9 @@ const RequestForm = () => {
               value={formData.volume}
               onChange={handleChange}
               rows="12"
+              style={{ resize: "none" }}
               placeholder="Volume of Data"
-              className={`w-full px-4 py-3 rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-gray-600 text-xs sm:text-sm placeholder-gray-500 outline-none`}
+              className={`w-full px-4 py-3 overflow-y-auto rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-gray-600 text-xs sm:text-sm placeholder-gray-500 outline-none`}
             />
           </div>
 
