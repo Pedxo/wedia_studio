@@ -10,10 +10,10 @@ const GradientShapes = ({ position }) => {
       {position === "top" && (
         <>
         <div
-          className={`absolute top-[-200px] right-[-200px] md:w-[400px] md:h-[400px] w-[100px] h-[100px] rounded-full ${commonStyle} z-0`}
+          className={`absolute top-[-200px] right-[-200px] md:w-[400px] md:h-[400px] w-[120px] h-[120px] rounded-full ${commonStyle} z-0`}
         />  
         <div
-          className={`absolute top-[700px] right-[-200px] md:w-[400px] md:h-[400px] w-[100px] h-[100px] rounded-full ${commonStyle} z-0`}
+          className={`absolute top-[700px] right-[-200px] md:w-[400px] md:h-[400px] w-[120px] h-[120px] rounded-full ${commonStyle} z-0`}
         />        
         </>
       )}

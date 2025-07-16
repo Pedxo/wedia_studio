@@ -83,7 +83,7 @@ const RequestForm = () => {
   return (
     <div className='min-h-screen font-sans w-full md:px-20 px-4 py-20'>
       <div className='mt-2'>
-        <h2 className={`text-center text-lg md:text-3xl font-semibold mb-2 ${
+        <h2 className={`text-center text-md md:text-3xl font-semibold mb-2 ${
           isDark ? "text-white" : "text-black"}`}>
           Get matched with creative humans for <br /> data labelling tasks
         </h2>
@@ -141,7 +141,7 @@ const RequestForm = () => {
                 <option value="Image">Image</option>
                 <option value="Audio">Audio</option>
               </select>
-              <FaChevronDown className="absolute right-4 top-11 text-gray-600 pointer-events-none" />
+              <FaChevronDown className="pointer-events-none absolute right-4 top-10 text-sm text-gray-600 " />
             </div>
 
             {/* Date */}
@@ -152,9 +152,9 @@ const RequestForm = () => {
                  value={formData.deliveryDate}
                  onChange={handleChange}
                 type="date"
-                className={`w-full px-4 py-3 rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-gray-600 text-xs sm:text-sm outline-none`}
+                className={`appearance-none w-full px-4 py-3 rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-gray-600 text-xs sm:text-sm outline-none`}
               />
-              <FaCalendarAlt className="absolute right-4 top-10 text-[#ff3ea5] pointer-events-none" />
+              <FaCalendarAlt className="pointer-events-none absolute right-4 top-10 text-[#ff3ea5] text-sm" />
             </div>
           </div>
 
@@ -221,8 +221,8 @@ const RequestForm = () => {
                 className="w-10 h-10 mb-3 cursor-pointer z-10"
                 onClick={() => fileInputRef.current.click()}
               />
-              <p className={`${isDark ? "text-white" : "text-black"} text-sm z-10`}>Choose a file or drag & drop it here.</p>
-              <p className={`${isDark ? "text-gray-500" : "text-gray-700"} text-xs mt-2 z-10`}>Accepts CSV, ZIP, JSON, etc.</p>
+              <p className={`${isDark ? "text-white" : "text-black"} text-xs sm:text-sm z-10`}>Choose a file or drag & drop it here.</p>
+              <p className={`${isDark ? "text-gray-500" : "text-gray-700"} text-[9px] sm:text-xs mt-2 z-10`}>Accepts CSV, ZIP, JSON, etc.</p>
 
               <input
                 type="file"
