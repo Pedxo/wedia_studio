@@ -2,14 +2,20 @@ import React from 'react';
 import ErrorDarkIcon from "../assets/ClientRequest4.png";
 import ErrorLightIcon from "../assets/ClientRequest5.png";
 import { useTheme } from '../themeContext/ThemeContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const ErrorPage = () => {
     const {isDark} = useTheme();
     const navigate = useNavigate();
+    const location = useLocation();
 
-    const handleBackToRequestForm = () => {
-        navigate("/request-form")
+    const {
+        returnPath = "/",
+        returnLabel = "Application Form"
+    } = location.state || {}
+
+    const handleReturn = () => {
+        navigate(returnPath)
     }
   return (
     <div className={`min-h-screen w-full  ${isDark ? "text-white" : "text-black"} flex flex-col gap-10 items-center justify-center md:px-20 px-2 py-20`}>
@@ -18,9 +24,9 @@ const ErrorPage = () => {
             Submission failed. Kindly check your inputs and try again. if the issue <br /> persists, contact our support team.
         </h3>
         <button 
-        onClick={handleBackToRequestForm}
+        onClick={handleReturn}
         className={` ${isDark ? "text-black" : "text-white"} text-xs sm:text-sm rounded-[14px] bg-[#ff3ea5] cursor-pointer px-4 py-3 md:w-64 w-full hover:bg-pink-700`}>
-            Return to Appication Form
+            Return to {returnLabel}
         </button>
     </div>
   )

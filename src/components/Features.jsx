@@ -9,8 +9,8 @@ const Features = () => {
 
     const images = [
         { src: Frame1, 
-        caption: 'Human labellers for your enterprise data.',
-         text: "Get human to tag your proprietary data for your AI products." },
+        caption: 'Human-Led Data Labeling & RLHF for AI Labs.',
+         text: "A vetted network of global contractors ready to annotate, evaluate, and fine-tune your models — fast." },
         { src: Frame2, 
         caption: 'Quality AI needs quality data.', 
         text: "Get a fleet of expert labellers for a high training data." },

@@ -75,7 +75,12 @@ const RequestForm = () => {
     } else if (isFormComplete) {
       navigate('/success-page'); // All good
     } else {
-      navigate('/error-page'); // Something missing
+      navigate('/error-page', {
+        state: {
+          returnPath: "/request-form",
+          returnLabel: "Request Form"
+        }
+      });
     }
   };
 
@@ -154,7 +159,7 @@ const RequestForm = () => {
                 type="date"
                 className={`appearance-none w-full px-4 py-3 rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-gray-600 text-xs sm:text-sm outline-none`}
               />
-              <FaCalendarAlt className="pointer-events-none absolute right-4 top-10 text-[#ff3ea5] text-sm" />
+              <FaCalendarAlt className="pointer-events-none absolute right-4 md:top-10.5 sm:top-10.5 top-9 text-[#ff3ea5] text-[14px] sm:text-[18px]" />
             </div>
           </div>
 

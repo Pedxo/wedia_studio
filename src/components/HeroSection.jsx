@@ -11,12 +11,10 @@ const HeroSection = () => {
         <>
             <div className='flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-20 py-6 w-full font-sans'>
 
-
                 {/* Left Text and call action Section */}
                 <div className="md:w-1/2 w-full space-y-6 px-2">
                     <h1 className="text-2xl sm:text-4xl md:text-5xl font-semibold leading-tight">
-                        Smarter <span className="text-pink-500">AI</span> Starts with <br />
-                        Smarter Data.
+                        Human Intelligence for Smarter <span className="text-pink-500">AI</span>
                     </h1>
                     <p className={`text-xs sm:text-sm absolute ${isDark ? "text-[#d9d9d9]/[0.6]" : "text-gray-400"}`}>
                         Wedia connects you with elite human taggers to turn your raw data into high performance AI training  sets.

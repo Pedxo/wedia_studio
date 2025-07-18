@@ -25,10 +25,21 @@ const Navbar = () => {
 
         {/*Navigation items */}
         <ul className="hidden md:flex items-center gap-10 text-sm">
-          <li><a href="/" className="hover:text-pink-500">Home</a></li>
-          <li><a href="#" className="hover:text-pink-500">How It Works</a></li>
-          <li><a href="#" className="hover:text-pink-500">Why Wedia</a></li>
+          <li><a href="#home" className="hover:text-pink-500">Home</a></li>
+          <li><a href="#how-it-works" className="hover:text-pink-500">How It Works</a></li>
+          <li><a href="#why-wedia" className="hover:text-pink-500">Why Wedia</a></li>
+          <li><a href="#who-its-for" className="hover:text-pink-500">What It's For</a></li>
         </ul>
+        {/*Book Demo*/}
+        <div>
+          <Link to="/book-demo">
+          <button
+          className={`hidden md:block font-semibold cursor-pointer hover:text-[#ff3ea5] transition
+          ${isDark ? "text-white" : "text-black"}`}>
+            BOOK DEMO
+          </button>
+          </Link>
+        </div>
         <div className="flex items-center gap-6">
           {/*Request button*/}
           <Link to="/request-form">
@@ -67,6 +78,16 @@ const Navbar = () => {
               <li><a href="#" className="hover:text-pink-500">How It Works</a></li>
               <li><a href="#" className="hover:text-pink-500">Why Wedia</a></li>
             </ul>
+            {/*Book Demo*/}
+          <div>
+            <Link to="/book-demo">
+            <button
+            className={`font-semibold cursor-pointer hover:text-[#ff3ea5] transition
+            ${isDark ? "text-white" : "text-black"}`}>
+              BOOK DEMO
+            </button>
+            </Link>
+          </div>
             {/*Request button*/}
             <Link to="/request-form">
               <button

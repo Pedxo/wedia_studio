@@ -6,16 +6,18 @@ import HowItWorks from '../components/HowItWorks'
 import Testimonials from '../components/Testimonials'
 import WhoItsFor from '../components/WhoItsFor'
 import WhyChooseWedia from '../components/WhyChooseWedia'
+import WorkSupport from '../components/WorkSupport'
 
 const Home = () => {
   return (
     <div>
-      <HeroSection />
-      <Features />
-      <HowItWorks />
-      <WhyChooseWedia />
-      <WhoItsFor />
-      <Testimonials />
+      <div id="home"><HeroSection /></div>
+      <div id="features"><Features /></div>
+      <div id="how-it-works"><HowItWorks /></div>
+      <div id="why-wedia"><WhyChooseWedia /></div>
+      <div id="who-its-for"><WhoItsFor /></div>
+      <WorkSupport />
+      <div id="testimonials"><Testimonials /></div>
       <CallToActionCard />
     </div>
   )

@@ -10,28 +10,24 @@ import {useTheme} from "../themeContext/ThemeContext"
 
 const testimonials = [
   {
-    quote: `Wedia helped us tag over 500,000\n  
-records under a week—with\n  
-flawless accuracy.`,
-    name: "CTO SynthAI",
+    quote: `We trained their team in under a week \n on our in-house evaluation tool.\n  
+    They adapted quicker than most in-house hires.`,
+    name: "ML Engineer, Fintech LLM Startup ",
   },
   {
-    quote: `Wedia helped us tag over 500,000\n  
-records under a week—with\n  
-flawless accuracy.`,
-    name: "CTO SynthAI",
+    quote: `Their contractors joined our CV pipeline and \n hit production-level quality within days.\n  
+    Reliable, fast, and easy to work with.`,
+    name: "Head of Data Operations, Robotics Company",
   },
   {
-    quote: `Wedia helped us tag over 500,000\n  
-records under a week—with\n  
-flawless accuracy.`,
-    name: "CTO SynthAI",
+    quote: ` Their annotators helped surface subtle bias patterns\n and outliers in our model outputs — very\n  
+    sharp attention to detail.`,
+    name: "Research Scientist, AI Lab ",
   },
   {
-    quote: `Wedia helped us tag over 500,000\n  
-records under a week—with\n  
-flawless accuracy.`,
-    name: "CTO SynthAI",
+    quote: `We onboarded them into Label Studio and our GitHub-based\n feedback loop with no friction.\n  
+    Great communication and consistent delivery.`,
+    name: "Data PM, NLP Infra Startup",
   },
 ];
 
@@ -62,7 +58,7 @@ const Testimonials = () => {
               <div 
               className={`backdrop-blur-md md:py-20 md:px-4 py-10 px-2 max-w-3xl w-full mx-auto rounded-[24px] shadow-md
               ${isDark ? "bg-[#ffffff0a] " : "bg-[#d9d9d9]/[0.4]"}`}>
-                <p className="text-sm sm:text-lg mb-8 whitespace-pre-line">“{testimonial.quote}”</p>
+                <p className="text-[13px] sm:text-lg mb-8 whitespace-pre-line">{testimonial.quote}</p>
                 <h4 className="font-semibold text-[#ff3ea5] text-xs sm:text-sm">{testimonial.name}</h4>
               </div>
             </SwiperSlide>

@@ -1,6 +1,7 @@
 import {createBrowserRouter} from "react-router-dom";
 import AppLayout from "./layout/AppLayout";
 import RequestLayout from "./layout/RequestLayout";
+import BookDemoPage from "./page/BookDemoPage";
 import ErrorPage from "./page/ErrorPage";
 import Home from "./page/Home";
 import RequestForm from "./page/RequestForm";
@@ -39,6 +40,10 @@ const router = () =>
         {
           path: "warning",
           element: <WarningPage />
+        },
+        {
+          path: "/book-demo",
+          element: <BookDemoPage />
         }
       ]
     },
