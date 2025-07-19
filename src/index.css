@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+
+@import "@fontsource/sora";
+@import "@fontsource/climate-crisis";
+
+:root {
+  --font-sans: 'Sora', sans-serif;
+  --font-heading: 'Climate Crisis', cursive;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+.font-climate {
+  font-family: var(--font-heading);
+}
+
+@keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .animate-floating {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+
+.swiper-pagination-bullet {
+  background-color: #d1d5db;
+  opacity: 1;
+}
+.swiper-pagination-bullet-active {
+  background-color: #ff3ea5 !important;
+  
+}
+html {
+  scroll-behavior: smooth;
+}
+
+
