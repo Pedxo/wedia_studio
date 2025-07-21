@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaChevronDown } from 'react-icons/fa';
 import { FaCalendarAlt, FaCloudUploadAlt } from 'react-icons/fa';
@@ -88,13 +88,11 @@ const RequestForm = () => {
   return (
     <div className='min-h-screen font-sans w-full md:px-20 px-4 py-20'>
       <div className='mt-2'>
-        <h2 className={`text-center text-md md:text-3xl font-semibold mb-2 ${
-          isDark ? "text-white" : "text-black"}`}>
+        <h2 className={`text-center text-md md:text-3xl font-semibold mb-2 ${isDark ? "text-white" : "text-black"}`}>
           Get matched with creative humans for <br /> data labelling tasks
         </h2>
-        <p className={`text-center text-[10px] sm:text-[12px] mb-12 ${
-          isDark ? "text-[#d9d9d9]/[0.6]" : "text-gray-400"
-        }`}>
+        <p className={`text-center text-[10px] sm:text-[12px] mb-12 ${isDark ? "text-[#d9d9d9]/[0.6]" : "text-gray-400"
+          }`}>
           The more you share, the better we can tailor your labelling team. No commitments <br />
           just high-impact support.
         </p>
@@ -105,9 +103,8 @@ const RequestForm = () => {
           {/* Row 1 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
             <div>
-              <label className={`block text-xs sm:text-sm mb-2 ${
-                isDark ? "text-white" : "text-black"
-              }`}>Project Name</label>
+              <label className={`block text-xs sm:text-sm mb-2 ${isDark ? "text-white" : "text-black"
+                }`}>Project Name</label>
               <input
                 type="text"
                 name="projectName"
@@ -136,11 +133,11 @@ const RequestForm = () => {
             {/* Dropdown */}
             <div className="relative">
               <label className={`block text-xs sm:text-sm ${isDark ? "text-white" : "text-black"} mb-2`}>Type of Data</label>
-              <select 
-              name="dataType"
-              value={formData.dataType}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 pr-10 rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-xs sm:text-sm text-gray-600 appearance-none outline-none`}>
+              <select
+                name="dataType"
+                value={formData.dataType}
+                onChange={handleChange}
+                className={`w-full px-4 py-3 pr-10 rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-xs sm:text-sm text-gray-600 appearance-none outline-none`}>
                 <option value="">Select</option>
                 <option value="Text">Text</option>
                 <option value="Image">Image</option>
@@ -153,9 +150,9 @@ const RequestForm = () => {
             <div className="relative">
               <label className={`block text-xs sm:text-sm ${isDark ? "text-white" : "text-black"} mb-2`}>Expected Delivery Date</label>
               <input
-                 name="deliveryDate"
-                 value={formData.deliveryDate}
-                 onChange={handleChange}
+                name="deliveryDate"
+                value={formData.deliveryDate}
+                onChange={handleChange}
                 type="date"
                 className={`appearance-none w-full px-4 py-3 rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-gray-600 text-xs sm:text-sm outline-none`}
               />
@@ -193,9 +190,9 @@ const RequestForm = () => {
             />
           </div>
 
-         
-        
-        {/* File Upload */}
+
+
+          {/* File Upload */}
           <div className="mb-10">
             <label className={`block text-sm ${isDark ? "text-white" : "text-black"} mb-2`}>File Upload</label>
 
@@ -228,7 +225,7 @@ const RequestForm = () => {
                 onClick={() => fileInputRef.current.click()}
               />
               <p className={`${isDark ? "text-white" : "text-black"} text-xs sm:text-sm z-10`}>Choose a file or drag & drop it here.</p>
-              <p className={`${isDark ? "text-gray-500" : "text-gray-700"} text-[9px] sm:text-xs mt-2 z-10`}>Accepts CSV, ZIP, JSON, etc.</p>
+              <p className={`${isDark ? "text-gray-500" : "text-gray-700"} text-[9px] sm:text-xs mt-2 z-10`}>Accepts ZIP, IMAGES, JSON, AUDIO FILES, etc.</p>
 
               <input
                 type="file"
@@ -255,18 +252,33 @@ const RequestForm = () => {
           {/* Confidentiality */}
           <div className="mb-10">
             <h3 className={`block text-sm ${isDark ? "text-white" : "text-black"} mb-3`}>Confidentiality</h3>
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="confidential"
-                checked={formData.confidential}
-                onChange={handleChange}
-                className="appearance-none border border-[#ff3ea5] bg-[#d9d9d9]/[0.03] w-4 h-4 rounded checked:bg-[#ff3ea5] checked:border-transparent"
-              />
-              <label className={`text-xs ${isDark ? "text-gray-300" : "text-black"}`}>
+            <label className="flex items-center gap-3 cursor-pointer select-none">
+              <div className="relative w-4 h-4">
+                <input
+                  type="checkbox"
+                  name="confidential"
+                  checked={formData.confidential}
+                  onChange={handleChange}
+                  className="appearance-none w-full h-full border border-[#ff3ea5] rounded bg-transparent checked:border-[#ff3ea5] transition-all duration-150"
+                />
+                {formData.confidential && (
+                  <svg
+                    className="absolute top-[2px] left-[2px] w-3 h-3 text-[#ff3ea5] pointer-events-none"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                )}
+              </div>
+              <span className={`text-[10px] sm:text-xs ${isDark ? "text-gray-300" : "text-black"}`}>
                 This data is sensitive, and we require an NDA
-              </label>
-            </div>
+              </span>
+            </label>
           </div>
 
           {/* Submit */}

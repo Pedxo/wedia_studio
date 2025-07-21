@@ -25,10 +25,9 @@ const Navbar = () => {
 
         {/*Navigation items */}
         <ul className="hidden md:flex items-center gap-10 text-sm">
-          <li><a href="#home" className="hover:text-pink-500">Home</a></li>
           <li><a href="#how-it-works" className="hover:text-pink-500">How It Works</a></li>
           <li><a href="#why-wedia" className="hover:text-pink-500">Why Wedia</a></li>
-          <li><a href="#who-its-for" className="hover:text-pink-500">What It's For</a></li>
+          <li><a href="#who-its-for" className="hover:text-pink-500">Who It's For</a></li>
         </ul>
         {/*Book Demo*/}
         <div>
@@ -74,9 +73,9 @@ const Navbar = () => {
           <div className="flex flex-col gap-10">
             {/*Navigation items */}
             <ul className="flex flex-col justify-start gap-5 text-xs">
-              <li><a href="#" className="hover:text-pink-500">Home</a></li>
-              <li><a href="#" className="hover:text-pink-500">How It Works</a></li>
-              <li><a href="#" className="hover:text-pink-500">Why Wedia</a></li>
+            <li><a href="#how-it-works" className="hover:text-pink-500">How It Works</a></li>
+            <li><a href="#why-wedia" className="hover:text-pink-500">Why Wedia</a></li>
+            <li><a href="#who-its-for" className="hover:text-pink-500">Who It's For</a></li>
             </ul>
             {/*Book Demo*/}
           <div>

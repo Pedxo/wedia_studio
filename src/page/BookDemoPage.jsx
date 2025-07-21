@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaChevronDown, FaCalendarAlt, FaClock } from 'react-icons/fa';
 import { useTheme } from '../themeContext/ThemeContext';
+import countriesData from "../utils/countriesStates.json";
+
 
 const BookDemoPage = () => {
   const { isDark } = useTheme();
@@ -18,14 +20,30 @@ const BookDemoPage = () => {
     dataType: '',
     deliveryDate: '',
   });
+  const [availableStates, setAvailableStates] = useState([]);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // If country changes, update the available states
+  if (name === "clientCountry") {
+    const country = countriesData.find((c) => c.name === value);
+    setAvailableStates(country ? country.states : []);
+    setFormData((prev) => ({ ...prev, 
+      clientCountry: value,
+      clientState: "" // reset state when country changes
+    }));
+  } else {
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
+  }
+
   };
+
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -106,27 +124,37 @@ const BookDemoPage = () => {
 
           {/* Row 2 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
-            <div>
-              <label className={`block text-xs sm:text-sm mb-2 ${isDark ? "text-white" : "text-black"}`}>Client Country *</label>
-              <input
-                type="text"
+            <div className="relative">
+              <label className={`block text-xs sm:text-sm mb-2 ${isDark ? 'text-white' : 'text-black'}`}>Client Country *</label>
+              <select
                 name="clientCountry"
                 value={formData.clientCountry}
                 onChange={handleChange}
-                placeholder="Country"
-                className={`w-full px-4 py-3 rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-xs sm:text-sm placeholder-gray-500 outline-none`}
-              />
+                className={`appearance-none w-full px-4 py-3  rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-xs sm:text-sm placeholder-gray-500 outline-none`}
+              >
+                <option value="">Select Country</option>
+                {countriesData.map((country, index) => (
+                  <option key={index} value={country.name} className="text-black">{country.name}</option>
+                ))}
+              </select>
+              <FaChevronDown className="pointer-events-none absolute right-4 top-10 text-gray-600" />
             </div>
-            <div>
-              <label className={`block text-xs sm:text-sm mb-2 ${isDark ? "text-white" : "text-black"}`}>Client State *</label>
-              <input
-                type="text"
+
+            <div className="relative">
+              <label className={`block text-xs sm:text-sm mb-2 ${isDark ? 'text-white' : 'text-black'}`}>Client State *</label>
+              <select
                 name="clientState"
                 value={formData.clientState}
                 onChange={handleChange}
-                placeholder="State"
-                className={`w-full px-4 py-3 rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-xs sm:text-sm placeholder-gray-500 outline-none`}
-              />
+                disabled={!availableStates.length}
+                className={`appearance-none w-full px-4 py-3 rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-xs sm:text-sm placeholder-gray-500 outline-none`}
+              >
+                <option value="">Select State</option>
+                {availableStates.map((state, index) => (
+                  <option key={index} value={state} className="text-black">{state}</option>
+                ))}
+              </select>
+              <FaChevronDown className="pointer-events-none absolute right-4 top-10 text-gray-600" />
             </div>
           </div>
 
@@ -200,7 +228,7 @@ const BookDemoPage = () => {
             />
             <FaCalendarAlt className="absolute right-4 md:top-10 sm:top-10.5 top-9 text-[#ff3ea5] text-[14px] sm:text-[18px] pointer-events-none" />
           </div>
-         
+
 
           {/* Submit */}
           <div>
