@@ -21,6 +21,15 @@ const WorkSupport = () => {
                     your workflows.
                 </p>
             </div>
+            <div className='mt-10 text-center '>
+                <h1 className={`text-lg sm:text-3xl font-semibold ${isDark ? "text-white" : "text-black"}`}>
+                  Human-in-the-loop force 
+                </h1>
+                <p className={`text-[10px] sm:text-[12px] ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                  Our database consists of scalable contractors skilled <br /> in RLHF and evals, ready to label or 
+                  review your AI data on-demand.
+                </p>
+            </div>
         </div>
     )
 }
