@@ -5,6 +5,7 @@ import { useTheme } from '../themeContext/ThemeContext';
 import countriesData from "../utils/countriesStates.json";
 
 
+
 const BookDemoPage = () => {
   const { isDark } = useTheme();
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const BookDemoPage = () => {
     dataType: '',
     deliveryDate: '',
   });
+
   const [availableStates, setAvailableStates] = useState([]);
 
 
@@ -39,6 +41,7 @@ const BookDemoPage = () => {
       ...prev,
       [name]: value,
     }));
+
   }
 
   };
@@ -155,6 +158,7 @@ const BookDemoPage = () => {
                 ))}
               </select>
               <FaChevronDown className="pointer-events-none absolute right-4 top-10 text-gray-600" />
+
             </div>
           </div>
 
@@ -228,7 +232,6 @@ const BookDemoPage = () => {
             />
             <FaCalendarAlt className="absolute right-4 md:top-10 sm:top-10.5 top-9 text-[#ff3ea5] text-[14px] sm:text-[18px] pointer-events-none" />
           </div>
-
 
           {/* Submit */}
           <div>

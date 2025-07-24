@@ -19,7 +19,9 @@ const HeroSection = () => {
                     <p className={`text-xs sm:text-sm absolute ${isDark ? "text-[#d9d9d9]/[0.6]" : "text-gray-400"}`}>
                         Wedia connects you with elite human taggers to turn your raw data into high performance AI training  sets.
                     </p>
+
                     <div className="flex items-center gap-3">
+
                     <Link to="/request-form">
                         <button
                             className={`text-[12px] sm:text-sm px-4 py-3 rounded-lg md:mt-12 mt-16 cursor-pointer font-semibold hover:bg-pink-700 transition
@@ -28,6 +30,7 @@ const HeroSection = () => {
                             Request A Project
                         </button>
                     </Link>
+
                     <Link to="/book-demo">
                         <button
                             className={`text-[12px] sm:text-sm px-4 py-3 rounded-lg md:mt-12 mt-16 cursor-pointer font-semibold hover:bg-gray-700 transition
@@ -37,6 +40,7 @@ const HeroSection = () => {
                         </button>
                     </Link>
                     </div>
+
                 </div>
 
                 {/* Right Image Section */}

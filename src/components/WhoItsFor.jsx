@@ -10,6 +10,7 @@ const WhoItsFor = () => {
   
 
     const itemsTop = [
+
         { img: AIStation, caption: "AI Startups", label: 'RLHF for instruction-tuned models' },
         { img: Research, caption: "Research Labs ", label: 'Labeling for images, text, and speech' },
         { img: EnterpriseAI, caption: "Enterprise AI Teams ", label: 'LLM Evaluation and content scoring' },
@@ -18,6 +19,7 @@ const WhoItsFor = () => {
       const itemsBottom = [
         { img: NLPVision, caption:"Evals System", label: 'Bias & fairness checking' },
         { img: Autonomous, caption: "NLP & Vision Projects ", label: 'Multi-language labeling' },
+
       ];
 
   return (
@@ -34,7 +36,9 @@ const WhoItsFor = () => {
             alt={item.label}
             className="w-[347px] h-[189px] rounded-[24px]"
           />
+
           <h2 className='absolute top-13 text-center text-gray-200 text-lg sm:text-2xl font-bold'>{item.caption}</h2>
+
           <p className="absolute text-center text-white dark:text-gray-200 text-[14px] sm:text-[16px] font-semibold px-2">
             {item.label}
             </p>
@@ -51,7 +55,9 @@ const WhoItsFor = () => {
             alt={item.label}
             className="w-[347px] h-[189px] rounded-[24px]"
           />
+
           <h2 className='absolute top-13 text-center text-gray-200 text-lg sm:text-2xl font-bold'>{item.caption}</h2>
+
           <p className="absolute text-center text-white dark:text-gray-200 text-[14px] sm:text-[16px] font-semibold px-2">
             {item.label}
             </p>
