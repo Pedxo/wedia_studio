@@ -135,7 +135,7 @@ const RequestForm = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
             {/* Dropdown */}
             <div className="relative">
-              <label className={`block text-xs sm:text-sm ${isDark ? "text-white" : "text-black"} mb-2`}>Type of Data</label><<<<<<< HEAD
+              <label className={`block text-xs sm:text-sm ${isDark ? "text-white" : "text-black"} mb-2`}>Type of Data</label>
               <select
                 name="dataType"
                 value={formData.dataType}
