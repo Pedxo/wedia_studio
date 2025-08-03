@@ -12,8 +12,11 @@ const CallToActionCard = () => {
 
 
   const handleRequest = () => {
-    navigate("/book-demo");
+    navigate("/request-form");
   };
+  const handleBookDemoRoute = () => {
+    navigate("/book-demo");
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,8 +25,8 @@ const CallToActionCard = () => {
         setCurrentWordIndex((prev) => (prev + 1) % keywords.length);
         setFade(true); // trigger fade in
       }, 400); // match animation duration
-    }, 7000);
-    return () => clearInterval(interval)
+    }, 3000);
+    return () => clearInterval(interval);
   }, [])
   return (
     <section className="relative z-0 py-16 md:px-20 px-8 flex justify-center items-center overflow-hidden font-sans">
@@ -40,11 +43,13 @@ const CallToActionCard = () => {
           Ready to plug in human intelligence?  <br /> Let’s help your models learn faster — and smarter.
         </p>
 
-        <p className='text-black font-semibold mb-2 text-sm'>Schedule a call </p>
+        <p className='text-black font-semibold mb-2 text-sm 
+        cursor-pointer hover:underline'
+        onClick={handleBookDemoRoute}>Schedule a call </p>
         <button
           onClick={handleRequest}
           className="bg-white text-xs sm:text-sm text-[#ff3ea5] cursor-pointer hover:bg-gray-100 px-6 py-3 rounded-[10px] font-semibold transition">
-          BOOK DEMO
+          Request A Project
         </button>
       </div>
     </section>

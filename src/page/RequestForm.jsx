@@ -1,10 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaChevronDown } from 'react-icons/fa';
 import { FaCalendarAlt, FaCloudUploadAlt } from 'react-icons/fa';
 import CloudUpload from "../assets/cloud_upload.png"
 import { useTheme } from '../themeContext/ThemeContext';
+import axios from 'axios';
 
+const enumTypeOfData = ["Text", "Images", "Audio", "Video", "Other"];
 
 const RequestForm = () => {
   const { isDark } = useTheme();
@@ -13,16 +15,22 @@ const RequestForm = () => {
   const [formData, setFormData] = useState({
     projectName: '',
     companyName: '',
-    dataType: '',
-    deliveryDate: '',
-    workforce: '',
-    volume: '',
+    typeOfData: '',
+    expectedDeliveryDate: '',
+    numberOfWorkforce: '',
+    volumeOfData: '',
     confidential: false,
+    email: '',
   });
 
   const [file, setFile] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const fileInputRef = useRef(null);
+
+ 
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -30,6 +38,7 @@ const RequestForm = () => {
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
     }));
+    setFormErrors((prev) => ({...prev, [name]: false }));
   };
 
   const handleFileSelect = (e) => {
@@ -53,36 +62,87 @@ const RequestForm = () => {
     }, 200);
   };
 
-  const handleSubmit = (e) => {
+  const validateForm = () => {
+    const errors = {};
+    const requiredFields = ['projectName', 'companyName', 'typeOfData', 'expectedDeliveryDate', 'numberOfWorkforce', 'email'];
+    requiredFields.forEach((field) => {
+      if (!formData[field]) {
+        errors[field] = true;
+      }
+    });
+    if (!file) errors.file = true;
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation
-    const {
-      projectName,
-      companyName,
-      dataType,
-      deliveryDate,
-      workforce,
-      volume,
-      confidential
-    } = formData;
+    if(!formData.confidential) {
+      return navigate("/warning")
+    } 
+    if(!validateForm()) return;
 
-    const isFormComplete = projectName && companyName && dataType &&
-      deliveryDate && workforce && volume && file;
+    setIsSubmitting(true); // start loading
 
-    if (!confidential) {
-      navigate('/warning'); // NDA not accepted
-    } else if (isFormComplete) {
-      navigate('/success-page'); // All good
-    } else {
+    const baseUrl = "https://wedia-2w5k.onrender.com"
+    
+    try {
+      const postData = new FormData();
+      Object.entries(formData).forEach(([key, value]) => postData.append(key, value));
+      if (file) postData.append('file', file);
+
+      const res = await axios.post(`${baseUrl}/api/v1/request-form/submit-request`, postData);
+      console.log("Form submitted:", res.data);
+      setFormData({
+        projectName: '',
+        companyName: '',
+        typeOfData: '',
+        expectedDeliveryDate: '',
+        numberOfWorkforce: '',
+        volumeOfData: '',
+        confidential: false,
+        email: '',
+      });
+      setFile(null);
+      navigate('/success-page');
+    } catch (error) {
+      console.error("Error submitting form:", error?.response?.data || error.message);
       navigate('/error-page', {
         state: {
           returnPath: "/request-form",
           returnLabel: "Request Form"
-        }
+        } 
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
+
+  const today = new Date().toISOString().split("T")[0];
+
+  const inputStyle = (field) => `
+    w-full px-4 py-3 rounded-[14px] text-gray-600 text-xs sm:text-sm placeholder-gray-500 outline-none 
+    ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} 
+    ${formErrors[field] ? "border border-pink-500" : ""}
+  `;
+ 
+  const dateTimetClass = (field) => `
+    appearance-none w-full px-4 py-3 rounded-[14px] 
+    ${formErrors[field] ? 'border border-[#ff3ea5]' : ''}
+    ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} 
+    text-xs sm:text-sm outline-none
+  `;
+
+  const typeOfDataClass = (field) => `
+    appearance-none w-full px-4 py-3 pr-10 rounded-[14px] 
+    ${formErrors[field] ? 'border border-[#ff3ea5]' : ''}
+    ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} 
+    text-xs sm:text-sm text-gray-600 outline-none
+  `;
+   
 
 
   return (
@@ -107,14 +167,14 @@ const RequestForm = () => {
             <div>
 
               <label className={`block text-xs sm:text-sm mb-2 ${isDark ? "text-white" : "text-black"
-                }`}>Project Name</label>
+                }`}>Project Name *</label>
               <input
                 type="text"
                 name="projectName"
                 value={formData.projectName}
                 onChange={handleChange}
                 placeholder="Project Name"
-                className={`w-full px-4 py-3 rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-gray-600 text-xs sm:text-sm placeholder-gray-500 outline-none`}
+                className={inputStyle("projectName")}
               />
             </div>
             <div>
@@ -125,7 +185,7 @@ const RequestForm = () => {
                 value={formData.companyName}
                 onChange={handleChange}
                 placeholder="Company Name"
-                className={`w-full px-4 py-3 rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-gray-600 text-xs sm:text-sm placeholder-gray-500 outline-none`}
+                className={inputStyle("companyName")}
               />
             </div>
           </div>
@@ -135,32 +195,32 @@ const RequestForm = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
             {/* Dropdown */}
             <div className="relative">
-              <label className={`block text-xs sm:text-sm ${isDark ? "text-white" : "text-black"} mb-2`}>Type of Data</label>
+              <label className={`block text-xs sm:text-sm ${isDark ? "text-white" : "text-black"} mb-2`}>Type of Data *</label>
               <select
-                name="dataType"
-                value={formData.dataType}
+                name="typeOfData"
+                value={formData.typeOfData}
                 onChange={handleChange}
-                className={`w-full px-4 py-3 pr-10 rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-xs sm:text-sm text-gray-600 appearance-none outline-none`}>
+                className={typeOfDataClass("typeOfData")}>
 
                 <option value="">Select</option>
-                <option value="Text">Text</option>
-                <option value="Image">Image</option>
-                <option value="Audio">Audio</option>
+                {enumTypeOfData.map((type, index) => (
+                  <option key={index} value={type}>{type}</option>
+                ))}
               </select>
               <FaChevronDown className="pointer-events-none absolute right-4 top-10 text-sm text-gray-600 " />
             </div>
 
             {/* Date */}
             <div className="relative">
-              <label className={`block text-xs sm:text-sm ${isDark ? "text-white" : "text-black"} mb-2`}>Expected Delivery Date</label>
+              <label className={`block text-xs sm:text-sm ${isDark ? "text-white" : "text-black"} mb-2`}>Expected Delivery Date *</label>
               <input
 
-                name="deliveryDate"
-                value={formData.deliveryDate}
+                name="expectedDeliveryDate"
+                value={formData.expectedDeliveryDate}
                 onChange={handleChange}
-
+                min={today}
                 type="date"
-                className={`appearance-none w-full px-4 py-3 rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-gray-600 text-xs sm:text-sm outline-none`}
+                className={dateTimetClass("expectedDeliveryDate")}
               />
               <FaCalendarAlt className="pointer-events-none absolute right-4 md:top-10.5 sm:top-10.5 top-9 text-[#ff3ea5] text-[14px] sm:text-[18px]" />
             </div>
@@ -168,38 +228,51 @@ const RequestForm = () => {
 
 
           {/* Row 3 */}
-          <div className="mb-10 ">
-            <label className={`block  text-xs sm:text-sm ${isDark ? "text-white" : "text-black"} mb-2`}>Number of Workforce Needed</label>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
+          <div >
+            <label className={`block  text-xs sm:text-sm ${isDark ? "text-white" : "text-black"} mb-2`}>Number of Workforce Needed *</label>
             <input
-              name="workforce"
-              value={formData.workforce}
+              name="numberOfWorkforce"
+              value={formData.numberOfWorkforce}
               onChange={handleChange}
               type="number"
               placeholder="Enter the number of workforce needed"
-              className={`w-full md:w-[48%] px-4 py-3 rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-gray-600 text-xs sm:text-sm placeholder-gray-500 outline-none`}
+              className={inputStyle("numberOfWorkforce")}
             />
           </div>
+          <div>
+              <label className={`block text-xs sm:text-sm mb-2 ${isDark ? "text-white" : "text-black"}`}>Email *</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
+                className={inputStyle("email")}
+              />
+            </div>
+            </div>
 
           {/* Volume of Data */}
           <div className="mb-10">
             <label className={`block text-xs sm:text-sm ${isDark ? "text-white" : "text-black"} mb-2`}>
-              Volume of Data <span className={`text-[9px] sm:text-xs ${isDark ? "text-gray-600" : "text-gray-700"}`}>(Use categories: Positive, Negative, Neutral)</span>
+              Volume of Data <span className={`text-[9px] sm:text-xs ${isDark ? "text-gray-600" : "text-gray-700"}`}>(Use categories: Positive, Negative, Neutral) *</span>
             </label>
             <textarea
-              name="volume"
-              value={formData.volume}
+              name="volumeOfData"
+              value={formData.volumeOfData}
               onChange={handleChange}
               rows="12"
               style={{ resize: "none" }}
               placeholder="Volume of Data"
-              className={`w-full px-4 py-3 overflow-y-auto rounded-[14px] ${isDark ? "bg-[#d9d9d9]/[0.03]" : "bg-[#d9d9d9]/[0.4]"} text-gray-600 text-xs sm:text-sm placeholder-gray-500 outline-none`}
+              className={inputStyle("volumeOfData")}
             />
           </div>
 
           {/* File Upload */}
 
           <div className="mb-10">
-            <label className={`block text-sm ${isDark ? "text-white" : "text-black"} mb-2`}>File Upload</label>
+            <label className={`block text-sm ${isDark ? "text-white" : "text-black"} mb-2`}>File Upload *</label>
 
             <div className="relative w-full h-64 px-10 py-8 flex flex-col justify-center items-center text-center rounded-[14px] overflow-hidden">
               {/* SVG Border */}
@@ -256,7 +329,7 @@ const RequestForm = () => {
 
           {/* Confidentiality */}
           <div className="mb-10">
-            <h3 className={`block text-sm ${isDark ? "text-white" : "text-black"} mb-3`}>Confidentiality</h3>
+            <h3 className={`block text-sm ${isDark ? "text-white" : "text-black"} mb-3`}>Confidentiality *</h3>
 
             <label className="flex items-center gap-3 cursor-pointer select-none">
               <div className="relative w-4 h-4">
@@ -292,9 +365,10 @@ const RequestForm = () => {
           <div>
             <button
               type="submit"
+              disabled={isSubmitting}
               className={` ${isDark ? "text-black" : "text-white"} bg-[#ff3ea5] text-black w-full md:w-1/2 cursor-pointer px-10 py-3 rounded-[14px] font-semibold text-xs sm:text-sm hover:bg-pink-700 transition`}
             >
-              Submit Request
+              {isSubmitting ? "Submitting" : "Submit Request"}
             </button>
           </div>
         </form>
