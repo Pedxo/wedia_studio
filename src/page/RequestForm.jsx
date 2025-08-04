@@ -148,7 +148,6 @@ const RequestForm = () => {
   return (
     <div className='min-h-screen font-sans w-full md:px-20 px-4 py-20'>
       <div className='mt-2'>
-
         <h2 className={`text-center text-md md:text-3xl font-semibold mb-2 ${isDark ? "text-white" : "text-black"}`}>
           Get matched with creative humans for <br /> data labelling tasks
         </h2>
@@ -201,7 +200,6 @@ const RequestForm = () => {
                 value={formData.typeOfData}
                 onChange={handleChange}
                 className={typeOfDataClass("typeOfData")}>
-
                 <option value="">Select</option>
                 {enumTypeOfData.map((type, index) => (
                   <option key={index} value={type}>{type}</option>
@@ -330,7 +328,6 @@ const RequestForm = () => {
           {/* Confidentiality */}
           <div className="mb-10">
             <h3 className={`block text-sm ${isDark ? "text-white" : "text-black"} mb-3`}>Confidentiality *</h3>
-
             <label className="flex items-center gap-3 cursor-pointer select-none">
               <div className="relative w-4 h-4">
                 <input
